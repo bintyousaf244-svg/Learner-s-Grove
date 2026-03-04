@@ -733,50 +733,42 @@ h4 {
     }
 }
 
-/* Educational Posts */
+/* Educational Posts (Mobile First) */
 .educational-gallery-wrapper {
     width: 100%;
     padding: 20px 0 40px;
-    display: flex;
-    justify-content: center;
 }
 
 .educational-gallery {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 30px;
-    overflow-x: auto;
-    padding: 20px 40px 40px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-    max-width: 100vw;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.educational-gallery::-webkit-scrollbar {
-    height: 8px;
+@media (min-width: 768px) {
+    .educational-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.educational-gallery::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 4px;
-    margin: 0 40px;
-}
-
-.educational-gallery::-webkit-scrollbar-thumb {
-    background: var(--color-plum);
-    border-radius: 4px;
+@media (min-width: 1024px) {
+    .educational-gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .educational-gallery .post-card {
-    flex: 0 0 320px;
-    scroll-snap-align: center;
     text-align: left;
     background: white;
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    /* updated border to be subtle */
     display: flex;
     flex-direction: column;
 }
