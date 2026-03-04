@@ -12,25 +12,9 @@ mobileMenu.addEventListener('click', () => {
     if (navLinks.classList.contains('nav-active')) {
         icon.classList.remove('fa-bars');
         icon.classList.add('fa-times');
-        navLinks.style.display = 'flex';
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.position = 'absolute';
-        navLinks.style.top = '70px';
-        navLinks.style.right = '20px';
-        navLinks.style.backgroundColor = 'white';
-        navLinks.style.padding = '20px';
-        navLinks.style.borderRadius = '10px';
-        navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-        navLinks.style.gap = '15px';
     } else {
         icon.classList.remove('fa-times');
         icon.classList.add('fa-bars');
-        navLinks.style.display = 'none';
-        
-        // Reset styles for desktop
-        setTimeout(() => {
-            navLinks.style = '';
-        }, 300);
     }
 });
 
@@ -39,7 +23,6 @@ navLinksItems.forEach(item => {
     item.addEventListener('click', () => {
         if(window.innerWidth <= 768) {
             navLinks.classList.remove('nav-active');
-            navLinks.style.display = 'none';
             const icon = mobileMenu.querySelector('i');
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
