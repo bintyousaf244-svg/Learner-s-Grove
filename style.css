@@ -1637,6 +1637,37 @@ footer {
         transform: scale(0.85);
         transform-origin: center center;
     }
+
+    /* Bring animals closer to center on mobile to form a tight flower ring */
+    .animal-1 {
+        top: 0%;
+        left: calc(50% - 60px);
+    }
+
+    .animal-2 {
+        top: 15%;
+        right: 10%;
+    }
+
+    .animal-4 {
+        bottom: 15%;
+        right: 10%;
+    }
+
+    .animal-5 {
+        bottom: 0%;
+        left: calc(50% - 60px);
+    }
+
+    .animal-6 {
+        bottom: 15%;
+        left: 10%;
+    }
+
+    .animal-7 {
+        top: 15%;
+        left: 10%;
+    }
 }
 
 
