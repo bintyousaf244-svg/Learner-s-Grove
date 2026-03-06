@@ -411,10 +411,21 @@ h4 {
 }
 
 .navbar .btn {
-    display: none;
+    display: inline-flex;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    margin-left: auto;
+    margin-right: 15px;
 }
 
 @media (min-width: 768px) {
+    .navbar .btn {
+        padding: 14px 32px;
+        font-size: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     .logo img {
         height: 90px;
     }
@@ -1611,10 +1622,17 @@ footer {
 }
 
 .stories-visual {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    height: 380px;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+@media (max-width: 767px) {
+    .animal-circles-container {
+        transform: scale(0.85);
+        transform-origin: center center;
+    }
 }
 
 
