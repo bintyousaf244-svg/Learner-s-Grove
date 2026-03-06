@@ -21,7 +21,7 @@ mobileMenu.addEventListener('click', () => {
 // Close mobile menu on link click
 navLinksItems.forEach(item => {
     item.addEventListener('click', () => {
-        if(window.innerWidth <= 768) {
+        if (window.innerWidth <= 768) {
             navLinks.classList.remove('nav-active');
             const icon = mobileMenu.querySelector('i');
             icon.classList.remove('fa-times');
@@ -37,7 +37,7 @@ accordionItems.forEach(item => {
     item.addEventListener('click', () => {
         // Find the paragraph within the clicked item
         const content = item.querySelector('p');
-        
+
         // Check if there is already an active item, close it if it's not the clicked one
         const activeItem = document.querySelector('.accordion-item.active');
         if (activeItem && activeItem !== item) {
@@ -72,10 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        
+
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
-        
+
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             window.scrollTo({
@@ -84,4 +84,38 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             });
         }
     });
+});
+
+// E-book Mobile Touch Support
+const ebookItems = document.querySelectorAll('.ebook-item');
+
+ebookItems.forEach(item => {
+    item.addEventListener('click', function (e) {
+        // If clicking on a button or link, let it work normally
+        if (e.target.closest('button') || e.target.closest('a')) {
+            return;
+        }
+
+        // Apply only on mobile/tablet views where hover is tricky
+        if (window.innerWidth <= 1024) {
+            const isActive = this.classList.contains('active');
+
+            // Remove active from all items first
+            ebookItems.forEach(el => el.classList.remove('active'));
+
+            // Toggle active state for this item
+            if (!isActive) {
+                this.classList.add('active');
+            }
+        }
+    });
+});
+
+// Close active ebook overlay if clicking outside of any ebook
+document.addEventListener('click', function (e) {
+    if (window.innerWidth <= 1024) {
+        if (!e.target.closest('.ebook-item')) {
+            ebookItems.forEach(el => el.classList.remove('active'));
+        }
+    }
 });
