@@ -1303,10 +1303,18 @@ h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    opacity: 0;
+    opacity: 1;
+    /* Always visible on mobile by default */
     transition: opacity 0.3s ease;
     padding: 15px;
     text-align: center;
+}
+
+@media (min-width: 768px) {
+    .ebook-overlay {
+        opacity: 0;
+        /* Hide by default on desktop, show on hover */
+    }
 }
 
 .ebook-item:hover img {
@@ -1336,8 +1344,10 @@ h4 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.ebook-item:hover .ebook-overlay {
-    opacity: 1;
+@media (min-width: 768px) {
+    .ebook-item:hover .ebook-overlay {
+        opacity: 1;
+    }
 }
 
 .ebook-overlay h4 {
