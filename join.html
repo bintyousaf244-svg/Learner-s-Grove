@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Us - Learner's Grove</title>
+    <meta name="description" content="Join our community of parents and educators.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Learner's Grove Logo">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#educational-posts">Learning</a></li>
+                    <li><a href="index.html#stories">Stories</a></li>
+                    <li><a href="index.html#eq">EQ</a></li>
+                    <li><a href="index.html#ebooks">E-Books</a></li>
+                    <li><a href="index.html#parents">For Parents</a></li>
+                </ul>
+            </nav>
+            <a href="join.html" class="btn btn-primary">Join Us</a>
+            <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <!-- Join Us Form Section -->
+    <section class="section bg-light-green"
+        style="padding-top: 150px; min-height: 80vh; display: flex; align-items: center; justify-content: center;">
+        <div class="container">
+            <div
+                style="background: white; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); padding: 50px; max-width: 500px; margin: 0 auto; text-align: center;">
+                <div style="font-size: 3rem; color: var(--color-green); margin-bottom: 20px;">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h2
+                    style="color: var(--color-plum); font-family: var(--font-primary); font-size: 2.2rem; margin-bottom: 10px;">
+                    Join Our Community</h2>
+                <p style="color: var(--color-text-dark); margin-bottom: 30px;">Become a part of Learner's Grove and
+                    receive exclusive educational resources, magical stories, and gentle parenting tips right in your
+                    inbox!</p>
+
+                <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="text-align: left;">
+                        <label for="name"
+                            style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--color-plum);">Your
+                            Name</label>
+                        <input type="text" id="name" name="name" required
+                            style="width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 10px; font-family: var(--font-secondary); outline: none; transition: border-color 0.3s;"
+                            onfocus="this.style.borderColor='var(--color-primary)'"
+                            onblur="this.style.borderColor='#eee'">
+                    </div>
+                    <div style="text-align: left;">
+                        <label for="email"
+                            style="display: block; margin-bottom: 8px; font-weight: 600; color: var(--color-plum);">Your
+                            Email</label>
+                        <input type="email" id="email" name="email" required
+                            style="width: 100%; padding: 15px; border: 2px solid #eee; border-radius: 10px; font-family: var(--font-secondary); outline: none; transition: border-color 0.3s;"
+                            onfocus="this.style.borderColor='var(--color-primary)'"
+                            onblur="this.style.borderColor='#eee'">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                        style="width: 100%; padding: 15px; font-size: 1.1rem; margin-top: 10px;">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Join Now
+                    </button>
+                </form>
+
+                <a href="index.html" class="btn btn-secondary btn-sm mt-4" style="display: inline-block;"><i
+                        class="fas fa-arrow-left"></i> Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container grid footer-grid">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <img loading="lazy" src="logo.png" alt="Learner's Grove">
+                </div>
+                <p>Learner's Grove: A Home for Minds to Bloom. Empowering families with high-quality homeschooling
+                    resources, stories, and emotional learning tools.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#educational-posts">Learning</a></li>
+                    <li><a href="index.html#stories">Stories</a></li>
+                    <li><a href="index.html#eq">Emotional Intelligence</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="index.html#ebooks">E-Books</a></li>
+                    <li><a href="index.html#parents">Parental Guide</a></li>
+                    <li><a href="ebooks.html">Printables</a></li>
+                    <li style="position: relative;">
+                        <a href="javascript:void(0)"
+                            onclick="const menu = this.nextElementSibling; menu.style.display = menu.style.display === 'block' ? 'none' : 'block';">Contact
+                            Us <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 5px;"></i></a>
+                        <ul style="display: none; padding-left: 15px; margin-top: 8px; list-style: none;">
+                            <li style="margin-bottom: 8px;"><a href="mailto:learnersgrove1@gmail.com"><i
+                                        class="fas fa-envelope" style="margin-right: 8px;"></i>Email Us</a></li>
+                            <li><a href="https://wa.me/923359170347" target="_blank"><i class="fab fa-whatsapp"
+                                        style="margin-right: 8px;"></i>WhatsApp</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/Learnerzgrove" target="_blank"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/learners.grove/" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/923359170347" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:learnersgrove1@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 Learner's Grove. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1039,39 +1039,90 @@ h4 {
     height: 400px;
 }
 
-.story-floating-card {
-    background: white;
-    padding: 20px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+.animal-circles-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.animal-circle {
     position: absolute;
-    width: 80%;
-    animation: float 6s ease-in-out infinite;
-}
-
-.top-card {
-    top: 50px;
-    right: 0;
-}
-
-.bottom-card {
-    bottom: 50px;
-    left: 0;
-    animation-delay: 1.5s;
-}
-
-.story-icon {
-    font-size: 2.5rem;
-    background: var(--color-light-purple);
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border: 5px solid white;
+    animation: float 5s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+
+.animal-circle:hover {
+    transform: scale(1.05);
+    z-index: 10 !important;
+}
+
+.animal-1 {
+    width: 120px;
+    height: 120px;
+    top: -5%;
+    left: calc(50% - 60px);
+    animation-delay: 0s;
+    z-index: 2;
+}
+
+.animal-2 {
+    width: 110px;
+    height: 110px;
+    top: 10%;
+    right: 5%;
+    animation-delay: 1s;
+    z-index: 2;
+}
+
+.animal-3 {
+    width: 160px;
+    height: 160px;
+    top: 50%;
+    left: 50%;
+    margin-top: -80px;
+    margin-left: -80px;
+    animation-delay: 2s;
+    z-index: 5;
+}
+
+.animal-4 {
+    width: 115px;
+    height: 115px;
+    bottom: 5%;
+    right: 10%;
+    animation-delay: 0.5s;
+    z-index: 2;
+}
+
+.animal-5 {
+    width: 120px;
+    height: 120px;
+    bottom: -15%;
+    left: calc(50% - 60px);
+    animation-delay: 1.5s;
+    z-index: 2;
+}
+
+.animal-6 {
+    width: 110px;
+    height: 110px;
+    bottom: 10%;
+    left: 5%;
+    animation-delay: 2.2s;
+    z-index: 2;
+}
+
+.animal-7 {
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    left: 0%;
+    animation-delay: 0.8s;
+    z-index: 2;
 }
 
 @keyframes float {
@@ -1566,16 +1617,7 @@ footer {
     gap: 20px;
 }
 
-.story-floating-card {
-    position: relative;
-    width: 100%;
-    top: auto;
-    bottom: auto;
-    left: auto;
-    right: auto;
-    animation: none;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-}
+
 
 @media (min-width: 768px) {
     .flex-row {
@@ -1598,35 +1640,10 @@ footer {
         display: block;
         height: 320px;
     }
-
-    .story-floating-card {
-        position: absolute;
-        width: 90%;
-        animation: float 6s ease-in-out infinite;
-    }
-
-    .top-card {
-        top: 50px;
-        bottom: auto;
-        right: 0;
-        left: auto;
-    }
-
-    .bottom-card {
-        top: auto;
-        bottom: 50px;
-        left: 0;
-        right: auto;
-        animation-delay: 1.5s;
-    }
 }
 
 @media (min-width: 1024px) {
     .stories-visual {
         height: 400px;
-    }
-
-    .story-floating-card {
-        width: 80%;
     }
 }
