@@ -119,3 +119,28 @@ document.addEventListener('click', function (e) {
         }
     }
 });
+
+// Fade-in Animation Observer
+document.addEventListener('DOMContentLoaded', () => {
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const fadeOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const fadeObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
+            } else {
+                entry.target.classList.add('appear');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, fadeOptions);
+
+    fadeElements.forEach(el => {
+        fadeObserver.observe(el);
+    });
+});
