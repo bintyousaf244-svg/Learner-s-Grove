@@ -1227,6 +1227,12 @@ h4 {
     text-align: center;
     border: 2px dashed var(--color-green);
     transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.eq-card .btn {
+    margin-top: auto;
 }
 
 .eq-card:hover {
