@@ -144,3 +144,155 @@ document.addEventListener('DOMContentLoaded', () => {
         fadeObserver.observe(el);
     });
 });
+
+// Join Us Modal Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const joinModal = document.getElementById('joinModal');
+    const openJoinModalBtn = document.getElementById('openJoinModal');
+    const closeModalBtn = document.querySelector('.modal-close');
+
+    if (openJoinModalBtn && joinModal && closeModalBtn) {
+        // Open modal
+        openJoinModalBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            joinModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+
+        // Close modal on close button click
+        closeModalBtn.addEventListener('click', () => {
+            joinModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+
+        // Close modal on clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === joinModal) {
+                joinModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        });
+
+        // Function to set the 'Joined' state
+        const setJoinedState = () => {
+            localStorage.setItem('hasJoinedLearnersGrove', 'true');
+            if (openJoinModalBtn) {
+                openJoinModalBtn.textContent = 'Joined ✓';
+                openJoinModalBtn.classList.add('btn-joined');
+                // Remove click listener functionality visually and functionally
+                openJoinModalBtn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); };
+            }
+        };
+
+        // Check Local Storage on page load
+        if (localStorage.getItem('hasJoinedLearnersGrove') === 'true') {
+            setJoinedState();
+        }
+
+        // Handle Facebook button click
+        const facebookBtn = document.querySelector('.btn-facebook');
+        if (facebookBtn) {
+            facebookBtn.addEventListener('click', () => {
+                setJoinedState();
+                // Close modal shortly after opening the new tab
+                setTimeout(() => {
+                    joinModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 1000);
+            });
+        }
+    }
+
+    // Handle form submission
+    const subscribeForm = document.getElementById('subscribeForm');
+    const subscribeBtn = document.getElementById('subscribeBtn');
+    const formMessage = document.getElementById('formMessage');
+
+    // IMPORTANT: Replace this URL with your deployed Google Apps Script Web App URL!
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzuMXBBOuO1vPdeDqU7Gw5ehPN7GDjth94-ve0paZtIDl0OVavoPzE1JXOPFrjOzCtt/exec';
+
+    if (subscribeForm) {
+        subscribeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Basic validation
+            const nameInput = subscribeForm.querySelector('input[name="Name"]').value.trim();
+            const emailInput = subscribeForm.querySelector('input[name="Email"]').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!nameInput || !emailInput || !emailRegex.test(emailInput)) {
+                formMessage.style.display = 'block';
+                formMessage.style.color = '#dc3545'; // Error red
+                formMessage.textContent = 'Please enter a valid name and email address.';
+                return;
+            }
+
+            // Show loading state
+            const originalBtnText = subscribeBtn.textContent;
+            subscribeBtn.textContent = 'Subscribing...';
+            subscribeBtn.disabled = true;
+            formMessage.style.display = 'none';
+
+            // Send data using FormData
+            const formData = new FormData(subscribeForm);
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    // If the script returned an error (e.g. duplicate email)
+                    if (data.result === 'error') {
+                        throw new Error(data.message);
+                    }
+
+                    // Success
+                    formMessage.style.display = 'block';
+                    formMessage.style.color = '#28a745'; // Success green
+                    formMessage.textContent = 'Thank you for joining the Learner’s Grove community! You will receive parenting tips and kids stories soon.';
+                    subscribeForm.reset();
+
+                    // Set the joined state to update the top header button
+                    if (openJoinModalBtn) {
+                        localStorage.setItem('hasJoinedLearnersGrove', 'true');
+                        openJoinModalBtn.textContent = 'Joined ✓';
+                        openJoinModalBtn.classList.add('btn-joined');
+                        openJoinModalBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); };
+                    }
+
+                    // Optional: Auto-close modal after a few seconds
+                    setTimeout(() => {
+                        joinModal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                        formMessage.style.display = 'none';
+                        subscribeBtn.textContent = originalBtnText;
+                        subscribeBtn.disabled = false;
+                    }, 4000);
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    formMessage.style.display = 'block';
+                    formMessage.style.color = '#dc3545';
+
+                    // Custom duplicate message check or generic error
+                    if (error.message.includes('already subscribed')) {
+                        formMessage.textContent = 'This email is already subscribed!';
+                    } else {
+                        formMessage.textContent = 'There was an error. Please ensure you have replaced the GOOGLE_SCRIPT_URL in script.js and try again.';
+                    }
+                })
+                .finally(() => {
+                    if (!formMessage.textContent.includes('Thank you')) {
+                        subscribeBtn.textContent = originalBtnText;
+                        subscribeBtn.disabled = false;
+                    }
+                });
+        });
+    }
+});
