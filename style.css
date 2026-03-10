@@ -1355,6 +1355,18 @@ h4 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.ebook-item>img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-bottom: 3px solid var(--color-gold);
+    transition: transform 0.4s ease;
+}
+
+.ebook-item:hover>img {
+    transform: scale(1.05);
+}
+
 .ebook-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
@@ -1391,6 +1403,26 @@ h4 {
     color: var(--color-plum-dark);
     font-size: 1.2rem;
     margin-bottom: 8px;
+}
+
+.ebook-overlay {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.ebook-overlay h4 {
+    color: var(--color-plum-dark);
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    margin-top: 0;
+}
+
+.ebook-overlay .btn {
+    margin-top: auto;
 }
 
 .ebook-benefit {
