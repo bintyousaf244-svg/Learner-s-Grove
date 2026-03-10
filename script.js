@@ -151,12 +151,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const openJoinModalBtn = document.getElementById('openJoinModal');
     const closeModalBtn = document.querySelector('.modal-close');
 
+    // Select all potential join buttons (nav link or modal trigger)
+    const navJoinBtns = document.querySelectorAll('a[href="join.html"], #openJoinModal');
+
+    // Function to set the 'Joined' state across all pages
+    const setJoinedState = () => {
+        localStorage.setItem('hasJoinedLearnersGrove', 'true');
+        navJoinBtns.forEach(btn => {
+            btn.textContent = 'Joined ✓';
+            btn.classList.add('btn-joined');
+            // Remove click listener functionality visually and functionally
+            btn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); };
+        });
+    };
+
+    // Check Local Storage on page load
+    if (localStorage.getItem('hasJoinedLearnersGrove') === 'true') {
+        setJoinedState();
+    }
+
     if (openJoinModalBtn && joinModal && closeModalBtn) {
         // Open modal
         openJoinModalBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            joinModal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            // Only open if not already joined
+            if (localStorage.getItem('hasJoinedLearnersGrove') !== 'true') {
+                e.preventDefault();
+                joinModal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
         });
 
         // Close modal on close button click
@@ -172,22 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.style.overflow = 'auto'; // Restore scrolling
             }
         });
-
-        // Function to set the 'Joined' state
-        const setJoinedState = () => {
-            localStorage.setItem('hasJoinedLearnersGrove', 'true');
-            if (openJoinModalBtn) {
-                openJoinModalBtn.textContent = 'Joined ✓';
-                openJoinModalBtn.classList.add('btn-joined');
-                // Remove click listener functionality visually and functionally
-                openJoinModalBtn.onclick = (e) => { e.preventDefault(); e.stopPropagation(); };
-            }
-        };
-
-        // Check Local Storage on page load
-        if (localStorage.getItem('hasJoinedLearnersGrove') === 'true') {
-            setJoinedState();
-        }
 
         // Handle Facebook button click
         const facebookBtn = document.querySelector('.btn-facebook');
@@ -259,12 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     subscribeForm.reset();
 
                     // Set the joined state to update the top header button
-                    if (openJoinModalBtn) {
-                        localStorage.setItem('hasJoinedLearnersGrove', 'true');
-                        openJoinModalBtn.textContent = 'Joined ✓';
-                        openJoinModalBtn.classList.add('btn-joined');
-                        openJoinModalBtn.onclick = (ev) => { ev.preventDefault(); ev.stopPropagation(); };
-                    }
+                    setJoinedState();
 
                     // Optional: Auto-close modal after a few seconds
                     setTimeout(() => {

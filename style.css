@@ -1396,7 +1396,7 @@ h4 {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    text-align: left;
+    text-align: center;
 }
 
 .ebook-details h4 {
@@ -1712,7 +1712,7 @@ footer {
     }
 
     .footer-logo img {
-        margin: 0 0 20px 0;
+        margin: 0 auto 20px;
     }
 
     .social-icons {
