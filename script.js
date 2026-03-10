@@ -296,3 +296,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// E-Book WhatsApp Purchase System
+document.addEventListener('DOMContentLoaded', () => {
+    const buyNowBtns = document.querySelectorAll('.buy-now-btn');
+    const phoneNumber = '923359170347'; // Learner's Grove Phone Number
+
+    buyNowBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Find the closest ebook container
+            const ebookItem = btn.closest('.ebook-item');
+            if (ebookItem) {
+                // Get the title from h4 (works for both index.html and ebooks.html structures)
+                let title = 'Ebook';
+                const titleElement = ebookItem.querySelector('h4');
+                if (titleElement) {
+                    title = titleElement.innerText.trim();
+                }
+
+                // Format the message
+                const message = `Hello, I would like to purchase the ebook: ${title}. Please share the payment details.`;
+
+                // Open WhatsApp link
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            }
+        });
+    });
+});
