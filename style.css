@@ -1082,7 +1082,7 @@ h4 {
 .check-list {
     margin: 20px 0 30px;
     text-align: left;
-    display: inline-block;
+    display: block;
 }
 
 .check-list li {
